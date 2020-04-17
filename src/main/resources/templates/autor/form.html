@@ -4,7 +4,7 @@
   	layout:decorate="layout">
 <head>
 	<meta charset="UTF-8" />
-	<title>Livros</title>
+	<title>Autor</title>
 		<!-- Bootstrap -->
 	<link rel="stylesheet" th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}" />
 	<link rel="stylesheet" th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap-theme.min.css}" />
@@ -12,29 +12,17 @@
 	
 </head>
 <body>
-	<a href="#" th:href="@{/livros/novo}">Novo</a>
-	<table>
-		<tr>
-			<th>ID</th>
-			<th>NOME</th>
-			<th>AUTOR</th>
-			<th>PÁGINAS</th>
-			<th></th>
-			<th></th>
-		</tr>
-		<tr th:each="livro : ${livros}">
-			<td th:text="${livro.id}">id do livro</td>
-			<td th:text="${livro?.nome}">nome do livro</td>
-			<td th:text="${livro?.autor?.nome}">nome do autor</td>
-			<td th:text="${livro?.quantidadePaginas}">total de páginas do livro</td>
-			<td><a href="/livros/alterar/" th:href="@{'/livros/alterar/'+${livro.id}}">Alterar</a></td>
-			<td><a href="/livros/alterar/" th:href="@{'/livros/excluir/'+${livro.id}}">Excluir</a></td>
-		</tr>
-	</table>
+	<form method="post" action="#" th:action="@{/autor/gravar}" th:object="${autor}">
+		<input type="hidden" th:field="*{id}">
+	    Nome: <input type="text" th:field="*{nome}">
+	    <span  th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}">Error</span><br>
 	
+	    <input type="submit">
+	</form>
+
 	<script type="text/javascript" th:src="@{/webjars/jquery/3.1.1/jquery.min.js}" ></script>
 	<script type="text/javascript" th:src="@{/webjars/jquery-ui/1.12.1/jquery-ui.js}" ></script>
 	<script type="text/javascript" th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}" ></script>
-	
+
 </body>
 </html>

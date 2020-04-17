@@ -18,4 +18,17 @@ public class AutorService {
 		return autorRepository.findAll();
 	}
 
+	public void salvarAutor(Autor autor) {
+		autorRepository.save(autor);
+	}
+
+	public Autor buscaAutor(Long id) {
+		return autorRepository.findById(id).orElseThrow(() -> new RuntimeException());
+	}
+
+	public void excluiAutor(Long id) {
+		autorRepository.deleteById(id);
+	}
+
+
 }
